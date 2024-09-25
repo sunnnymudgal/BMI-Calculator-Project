@@ -8,20 +8,20 @@ form.addEventListener('submit', function (e) {
     const results = document.querySelector('#results');
     const range = document.querySelector('#range')
 
-    if (height === '' || height < 0 || isNaN(height)) {
-        results.innerHTML = `Please give a valid height ${height}`
-    }else if (weight === '' || weight < 0 || isNaN(weight)) {
-        results.innerHTML = `Please give a valid ${weight}`
-    }else{
-        const bmi = (weight / ((height*height)/10000)).toFixed(2)
-        results.innerHTML = `<span>${bmi}</span>`;
+    if (isNaN(height) || height <= 0) {
+        results.innerHTML = `Please provide a valid height`;
+    } else if (isNaN(weight) || weight <= 0) {
+        results.innerHTML = `Please provide a valid weight`;
+    } else {
+        const bmi = (weight / ((height * height) / 10000)).toFixed(2);
+        results.innerHTML = `<span>Your BMI is: ${bmi}</span>`;
         
-        if (bmi < 18.6) {
-            range.innerHTML = 'Under weight'
-        }else if (bmi > 24.9){
-            range.innerHTML = 'Over weight'
-        }else{
-            range.innerHTML = 'Normal'
+        if (bmi < 18.5) {
+            range.innerHTML = 'Underweight';
+        } else if (bmi > 25.0) {
+            range.innerHTML = 'Overweight';
+        } else {
+            range.innerHTML = 'Normal weight';
         }
     }
-})
+});
